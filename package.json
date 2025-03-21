@@ -4,13 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "rimraf .next && next build",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "clean": "rimraf .next build",
-    "type-check": "tsc --noEmit",
-    "lint-staged": "lint-staged",
-    "prepare": "husky install"
+    "lint": "next lint"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.2",
@@ -37,18 +33,9 @@
     "eslint-config-next": "14.1.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "husky": "^8.0.0",
-    "lint-staged": "^15.0.0",
     "postcss": "^8",
     "prettier": "^3.0.0",
-    "rimraf": "^5.0.0",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ]
   }
 }
