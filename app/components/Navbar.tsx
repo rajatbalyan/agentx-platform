@@ -23,7 +23,7 @@ export function Navbar() {
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
               <Link href="/" className="text-xl font-bold text-blue-600">
-                SiteSentry
+                SiteSentry 
               </Link>
             </div>
 
