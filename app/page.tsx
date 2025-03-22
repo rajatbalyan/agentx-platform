@@ -16,13 +16,7 @@ export default function Home() {
             className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             Get Started
-          </Link>
-          <Link
-            href="/about"
-            className="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors"
-          >
-            Learn More
-          </Link>
+          </Link> 
         </div>
       </div>
 
@@ -32,7 +26,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+              <h3 className="text-xl font-semibold mb-2 text-black">{feature.title}</h3>
               <p className="text-gray-600">{feature.description}</p>
             </div>
           ))}

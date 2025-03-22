@@ -17,6 +17,7 @@ SiteSentry is an AI-powered web maintenance platform that helps website owners a
 
 - Node.js 18.x or later
 - npm or yarn
+- GitHub account (for OAuth)
 
 ### Installation
 
@@ -33,20 +34,36 @@ SiteSentry is an AI-powered web maintenance platform that helps website owners a
    yarn install
    ```
 
-3. Start the development server:
+3. Set up environment variables:
+   - Copy `.env.local.example` to `.env.local`
+   - Set up GitHub OAuth:
+     1. Go to GitHub Settings > Developer settings > OAuth Apps > New OAuth App
+     2. Set Homepage URL to `http://localhost:3000`
+     3. Set Authorization callback URL to `http://localhost:3000/api/auth/callback/github`
+     4. Copy the Client ID and Client Secret to your `.env.local` file
+   - Generate a random string for NEXTAUTH_SECRET (at least 32 characters)
+
+4. Start the development server:
    ```bash
    npm run dev
    # or
    yarn dev
    ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Authentication
+
+SiteSentry supports the following authentication methods:
+- GitHub OAuth
+- Email/Password (coming soon)
 
 ## Tech Stack
 
 - Next.js 14
 - React 18
 - TypeScript
+- NextAuth.js
 - Tailwind CSS
 - PostCSS
 

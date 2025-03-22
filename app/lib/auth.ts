@@ -1,7 +1,6 @@
 import { getServerSession } from "next-auth";
-import { authConfig } from "./auth.config";
-import { AuthOptions } from 'next-auth';
-import GithubProvider from 'next-auth/providers/github';
+import GithubProvider from "next-auth/providers/github";
+import type { AuthOptions } from "next-auth";
 
 if (!process.env.GITHUB_ID || !process.env.GITHUB_SECRET) {
   throw new Error('Missing GitHub OAuth credentials');
@@ -10,18 +9,36 @@ if (!process.env.GITHUB_ID || !process.env.GITHUB_SECRET) {
 export const authOptions: AuthOptions = {
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+      clientId: process.env.GITHUB_ID!,
+      clientSecret: process.env.GITHUB_SECRET!,
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
   pages: {
-    signIn: '/auth/signin',
+    signIn: '/login',
+  },
+  callbacks: {
+    async session({ session, token }) {
+      if (token && session.user) {
+        // @ts-ignore
+        session.user.id = token.sub;
+      }
+      return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    }
+  },
+  session: {
+    strategy: 'jwt',
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
 };
 
 export async function getSession() {
-  return await getServerSession(authConfig);
+  return await getServerSession(authOptions);
 }
 
 export async function getCurrentUser() {
