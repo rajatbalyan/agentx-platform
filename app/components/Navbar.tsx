@@ -12,7 +12,8 @@ export function Navbar() {
 
   const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'Dashboard', href: '/dashboard' } 
+    { name: 'Dashboard', href: '/dashboard' }, 
+    { name: 'Action', href: './action' }
   ];
 
   return (
